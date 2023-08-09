@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection PhpUndefinedFieldInspection */
 
 namespace App\Http\Controllers;
 use App\Http\Requests\ProductFormrequest;
@@ -47,18 +47,18 @@ class ProductController extends Controller
     }
 
     public function AddToCart($product_id){
-        $product = ProductController::findOrFail($product_id);
+        $product = ProductController::index($product_id);
         $cart = session()->get('cart',[]);
         if(isset($cart[$product_id])){
             $cart[$product_id]['quantity']++;
         }
         else{
             $cart[$product_id]=[
-                'category'=>$product->product_category,
-                'name'=>$product->product_name,
-                'image'=>$product->product_image,
-                'price'=>$product->product_price,
-                'quantity'=>1
+                "category"=>$product->category,
+                "name"=>$product->name,
+                "image"=>$product->image,
+                "price"=>$product->price,
+                "quantity"=> 1
             ];
         }
         session()->put('cart',$cart);

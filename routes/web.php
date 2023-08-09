@@ -37,7 +37,8 @@ Route::controller(App\Http\Controllers\ProductController::class)->group(function
     Route::get('/edit-products/{product_id}','edit');
     Route::put('/update-products/{product_id}','update');
     Route::delete('/delete-product/{product_id}','destroy');
-
+    Route::get('/show-products','index');
+    Route::get('AddToCart/{id}',[productController::class,'AddToCart'])->name('AddToCart');
 });
 
 //Auth::routes();
